@@ -41,14 +41,13 @@ export default function Home() {
       wiki: v.wiki,
       img: v.img,
     }
-    const newCart = cart.concat([cartItem])
-    setCart(newCart)
+
+    setCart((prev) => prev.concat([cartItem]))
   }, [cart])
 
   const handleRemoveFromCart = useCallback((v: CartItem) => {
-    const newCart = cart.filter((item) => item.cartIndex !== v.cartIndex)
-    setCart(newCart)
-  }, [cart])
+    setCart((prev) => prev.filter((item) => item.cartIndex !== v.cartIndex))
+  }, [])
 
   const manufacturerFilter = useMemo(() => {
     return (
