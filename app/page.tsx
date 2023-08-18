@@ -31,19 +31,18 @@ export default function Home() {
   }, [bFilter, mFilter, priceRange])
 
   const handleAddtoCart = useCallback((v: Vehicle) => {
-    const cartItem: CartItem = {
+
+    setCart((prev) => prev.concat([{
       stockIndex: v.stockIndex,
-      cartIndex: cart.length + 1,
+      cartIndex: prev.length + 1,
       manufacturer: v.manufacturer,
       model: v.model,
       price: v.price,
       body: v.body,
       wiki: v.wiki,
       img: v.img,
-    }
-
-    setCart((prev) => prev.concat([cartItem]))
-  }, [cart])
+    }]))
+  }, [])
 
   const handleRemoveFromCart = useCallback((v: CartItem) => {
     setCart((prev) => prev.filter((item) => item.cartIndex !== v.cartIndex))
